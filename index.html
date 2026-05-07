@@ -7,9 +7,15 @@
 </head>
 <body>
     <h1>super basic clicker game</h1>
-    <h3 id="clickCount"></h3>
+    <h3 id="clickCount">clicks: 0</h3>
+    <button onclick="click()" id="clickMe">Click</button>
     <script>
-
+        let clicks = 0;
+        let baseClickCount = 1;
+        function click(){
+            clicks += baseClickCount;
+            document.getElementById(clickMe).outerHTML = "clicks: " + clicks
+        }
     </script>
 </body>
 </html>
