@@ -4,18 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clicker game</title>
+    <style>
+        
+    </style>
 </head>
-<body>
+<body style="text-align: center; width: 100%;">
     <h1>super basic clicker game</h1>
-    <h3 id="clickCount">clicks: 0</h3>
-    <button onclick="click()" id="clickMe">Click</button>
+    <div id = "playscreen">
+        <button onclick="playGame()">click to play</button>
+    </div>
+    <div id="clickscreen" style="display:none">
+        <h2>main game</h2>
+        <h3 id="clickCount">clicks: 0</h3>
+        <button onclick="clickthis()" id="clickMe" style="width: 50px;">Click</button>
+        <div style="width: 100%; display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+            <button onclick="openShop()">Shop</button>
+            <button onclick="openSettings()">Settings</button>
+        </div>
+    </div>
+    <div id="shop" style="display: none;">
+        <h2>Shop</h2>
+        <button onclick="closeShop()">Close Shop</button>
+        <table>
+            <tbody>
+                <td><button onclick="clickMult()" id="first">2x Click Multiplier<br>20 Clicks</button></td>
+                <td></td>
+            </tbody>
+        </table>
+    </div>
+    <div id="settings" style="display: none;"></div>
     <script>
+        // variables
+
         let clicks = 0;
         let baseClickCount = 1;
-        function click(){
-            clicks += baseClickCount;
-            document.getElementById(clickMe).outerHTML = "clicks: " + clicks
+        let clickMultiplier = 1;
+        let element = document.getElementById(elementthing)
+
+        // click function
+
+        function clickthis(){
+            clicks += baseClickCount * clickMultiplier;
+            document.getElementById("clickCount").innerHTML = "clicks: " + clicks
         }
+
+        // ui functions
+
+        function playGame() {
+            document.getElementById("clickscreen").style.display = "block";
+            document.getElementById("playscreen").style.display = "none";
+        }
+
+        function openShop(){
+            document.getElementById("clickscreen").style.display = "none";
+            document.getElementById("shop").style.display = "block";
+        }
+
+        function openSettings(){
+            pass
+        }
+
+        function closeShop(){
+            document.getElementById("clickCount").innerHTML = "clicks: " + clicks
+            document.getElementById("clickscreen").style.display = "none";
+            document.getElementById("playscreen").style.display = "block";
+        }
+
+        // shop buttons
+
+        let one = 0
+
+        function clickMult(){
+            if (one = 0){
+                clickMultiplier+=1
+                document.getElementById("first").innerHTML = "2x Click Multiplier"<br>"bought"
+            } else {
+                pass
+            }
+            
+        }
+
+
+
+
     </script>
 </body>
 </html>
