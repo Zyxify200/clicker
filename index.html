@@ -25,7 +25,7 @@
     <div id="shop" style="display: none;">
         <h2>Shop</h2>
         <button onclick="closeShop()">Close Shop</button>
-        <table>
+        <table style="width: 100%; display: flex; justify-content: center; gap: 10px; margin-top: 10px;border: 1px solid ;">
             <tbody>
                 <td><button onclick="clickMult()" id="first">2x Click Multiplier<br>20 Clicks</button></td>
                 <td></td>
@@ -39,7 +39,6 @@
         let clicks = 0;
         let baseClickCount = 1;
         let clickMultiplier = 1;
-        let element = document.getElementById(elementthing)
 
         // click function
 
@@ -61,13 +60,12 @@
         }
 
         function openSettings(){
-            pass
         }
 
         function closeShop(){
             document.getElementById("clickCount").innerHTML = "clicks: " + clicks
-            document.getElementById("clickscreen").style.display = "none";
-            document.getElementById("playscreen").style.display = "block";
+            document.getElementById("clickscreen").style.display = "block";
+            document.getElementById("shop").style.display = "none";
         }
 
         // shop buttons
@@ -75,13 +73,19 @@
         let one = 0
 
         function clickMult(){
-            if (one = 0){
-                clickMultiplier+=1
-                document.getElementById("first").innerHTML = "2x Click Multiplier"<br>"bought"
-            } else {
+            if (clicks < 20){
                 pass
+            } else {
+                if (one == 0){
+                    clickMultiplier+=1
+                    one = 1
+                    clicks -= 20
+                    document.getElementById("first").innerHTML = "2x Click Multiplier<br>bought"
+                    document.getElementById("clickCount").innerHTML = "clicks: " + clicks
+                } 
             }
             
+
         }
 
 
