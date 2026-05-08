@@ -24,6 +24,7 @@
       <button onclick="clickthis()" id="clickMe" style="width: 50px">
         Click
       </button>
+      <button onclick="setMoney()" id="dev" style="width: 50px">add a mil</button>
       <div
         style="
           width: 100%;
@@ -57,7 +58,10 @@
         >
           5x Click Multiplier<br />100 Clicks
         </button></span
-      >
+      > <br> <br>
+      <span>
+        <button onclick="critChanceUpgrade()" id="third" style="width: fit-content; height: 100%; border-radius: 0px">Crit Chance Upgrade<br>1 Clicks - 0/10</button>
+      </span>
     </div>
     <div id="stats" style="display: none"></div>
     <script>
@@ -66,12 +70,13 @@
       let clicks = 0;
       let baseClickCount = 1;
       let clickMultiplier = 1;
+      let critChance = 9;
 
       // click function
 
       function clickthis() {
-        let num = Math.floor(Math.random() * 10); 
-        if (num == 9) {
+        let num = Math.floor(Math.random() * critChance+1); 
+        if (num == critChance) {
           clicks += baseClickCount * clickMultiplier * 1.5;
           document.getElementById("clickCount").innerHTML = "clicks: " + clicks + "(critical click)";
         } else {
@@ -80,6 +85,11 @@
         }
         
         document.getElementById("clickCount").innerHTML = "clicks: " + clicks;
+      }
+
+      function setMoney() {
+         clicks += 1000000
+         document.getElementById("clickCount").innerHTML = "clicks: " + clicks;
       }
 
       // ui functions
@@ -141,6 +151,24 @@
             document.getElementById("clickCount").innerHTML =
               "clicks: " + clicks;
           }
+        }
+      }
+
+      let critUpgradePrice = 1;
+      let critUpgradeCounter = 0;
+
+      function critChanceUpgrade(){
+        if (clicks < critUpgradePrice) {
+        } else if (critUpgradeCounter==10) {
+          document.getElementById("third").innerHTML = "Crit Chance Upgrade<br>"+"bought"
+        } else {
+          critUpgradeCounter+=1
+          critChance-=1
+          clicks -= critUpgradePrice
+          critUpgradePrice *= 2
+          document.getElementById("third").innerHTML = "Crit Chance Upgrade<br>"+critUpgradePrice+" Clicks - "+critUpgradeCounter+"/10"
+          document.getElementById("clickCount").innerHTML =
+              "clicks: " + clicks;
         }
       }
 
