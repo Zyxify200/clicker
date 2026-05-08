@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>clicker game</title>
-    <style></style>
+    <style>
+      button{
+        background-color: rgb(45, 45, 115);
+        color: white;
+        padding: 5px;
+        border-style:initial;
+      }
+    </style>
   </head>
-  <body style="text-align: center; width: 100%">
+  <body style="text-align: center; width: 100%; background-color: lightblue; color:rgb(45, 45, 115)">
     <h1>super basic clicker game</h1>
     <div id="playscreen">
       <button onclick="playGame()">click to play</button>
@@ -27,7 +34,7 @@
         "
       >
         <button onclick="openShop()">Shop</button>
-        <button onclick="openSettings()">Settings</button>
+        <button onclick="openStats()">Stats</button>
       </div>
     </div>
     <div id="shop" style="display: none">
@@ -44,15 +51,15 @@
           2x Click Multiplier<br />20 Clicks
         </button>
         <button
-          onclick="clickMult()"
-          id="first"
+          onclick="clickMultx5()"
+          id="second"
           style="width: fit-content; height: 100%; border-radius: 0px"
         >
-          2x Click Multiplier<br />20 Clicks
+          5x Click Multiplier<br />100 Clicks
         </button></span
       >
     </div>
-    <div id="settings" style="display: none"></div>
+    <div id="stats" style="display: none"></div>
     <script>
       // variables
 
@@ -63,7 +70,15 @@
       // click function
 
       function clickthis() {
-        clicks += baseClickCount * clickMultiplier;
+        let num = Math.floor(Math.random() * 10); 
+        if (num == 9) {
+          clicks += baseClickCount * clickMultiplier * 1.5;
+          document.getElementById("clickCount").innerHTML = "clicks: " + clicks + "(critical click)";
+        } else {
+          clicks += baseClickCount * clickMultiplier;
+          document.getElementById("clickCount").innerHTML = "clicks: " + clicks;
+        }
+        
         document.getElementById("clickCount").innerHTML = "clicks: " + clicks;
       }
 
@@ -79,17 +94,23 @@
         document.getElementById("shop").style.display = "block";
       }
 
-      function openSettings() {}
+      function openStats() {}
 
       function closeShop() {
         document.getElementById("clickCount").innerHTML = "clicks: " + clicks;
         document.getElementById("clickscreen").style.display = "block";
         document.getElementById("shop").style.display = "none";
       }
+      
+      function closeStats() {
+        document.getElementById("clickscreen").style.display = "block";
+        document.getElementById("stats").style.display = "none";
+      }
 
       // shop buttons
 
       let one = 0;
+      let two = 0;
 
       function clickMult() {
         if (clicks < 20) {
@@ -101,6 +122,22 @@
             clicks -= 20;
             document.getElementById("first").innerHTML =
               "2x Click Multiplier<br>bought";
+            document.getElementById("clickCount").innerHTML =
+              "clicks: " + clicks;
+          }
+        }
+      }
+
+      function clickMultx5() {
+        if (clicks < 100) {
+          pass;
+        } else {
+          if (two == 0) {
+            clickMultiplier += 3;
+            two = 1;
+            clicks -= 100;
+            document.getElementById("second").innerHTML =
+              "5x Click Multiplier<br />bought";
             document.getElementById("clickCount").innerHTML =
               "clicks: " + clicks;
           }
